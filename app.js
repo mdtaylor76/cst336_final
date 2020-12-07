@@ -136,15 +136,15 @@ app.get("/logout", function(req, res) {
 
 function isAuthenticated(req, res, next) {
     console.log("isAuthenticated req.session.id: " + req.session.id);
-    //if (!req.session.authenticated) {
-    //    console.log("!req.session.authenticated")
-    //    res.redirect('/');
-    //}
-    //else {
+    if (!req.session.authenticated) {
+        console.log("!req.session.authenticated")
+        res.redirect('/');
+    }
+    else {
         console.log("next() req.session.authenticated: " + req.session.authenticated);
         console.log("user: " + req.body.username);
         next();
-    //}
+    }
 }
 
 function createDBConnection() {
