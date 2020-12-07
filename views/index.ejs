@@ -1,0 +1,48 @@
+<%- include('partials/header.ejs') %>
+        <main>
+            <h1> Sign Up - Login Page </h1>
+        </main>
+        
+    <ul class="tab-group">
+        <li class="tab active"><a href="#signup">Sign Up</a></li>
+        <li class="tab"><a href="#login">Log In</a></li>
+    </ul>
+
+    <div class="tab-content">
+        <div class="active" id="signup">   
+
+            <form method="POST">
+                <h1>Create Account</h1>
+                <% if (typeof loginError != "undefined" && loginError) { %>
+                
+                    <h3 class="error">Wrong Credentials</h3>
+                
+                <% }%>
+                <label> Username</label>
+                <input type="text" name="username"/>
+                <label> Set A Password</label>
+                <input type="password" name="password"/>
+                <button type="submit" class="button button-block"/>Create</button>
+                <input type="hidden" name="action" value="create">
+            </form>
+        </div>
+        <div id="login">  
+            <h1>Welcome Back!</h1>
+            
+            <form method="POST">
+                <% if (typeof loginError != "undefined" && loginError) { %>
+                
+                    <h3 class="error">Wrong Credentials</h3>
+                
+                <% }%>
+                <label> Username</label>
+                <input type="text" name="username"/>
+                <label>Password</label>
+                <input type="password" name="password"/>
+                <button class="button button-block" id="login"/>Login</button>
+                <input type="hidden" name="action" value="login">
+            </form>
+        </div>
+    </div>
+    
+<%- include('partials/footer.ejs') %>

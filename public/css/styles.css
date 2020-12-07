@@ -1,0 +1,22 @@
+.form {
+  padding: 40px;
+  max-width:600px;
+  margin:40px auto;
+}
+
+.tab-content > div:last-child {
+  display:none;
+}
+
+.button-block {
+  display:block;
+  width:50%;
+}
+
+.tab {
+    display: inline-block;
+}
+
+.nav {
+    display: inline-block;
+}
