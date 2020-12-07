@@ -24,4 +24,7 @@
     "mysql": "^2.18.1",
     "node-fetch": "^2.6.1"
   }
+  "scripts": {
+    "start": "node app.js"
+  }
 }
