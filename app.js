@@ -131,7 +131,7 @@ app.get("/welcome", isAuthenticated, function(req, res) {
     let username = req.session.username;
     console.log("Username: " + username);
     //res.render("welcome", );
-    res.render("welcome", {active: "home", "logged": true});
+    res.render("welcome", {active: "home", "logged": true, "username": username});
 });
 
 app.get("/logout", function(req, res) {
