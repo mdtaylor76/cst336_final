@@ -69,7 +69,7 @@ app.post("/", async function(req, res) {
                 let hashedPass = await hashPassword(password);
                 result = await addUsername(username, hashedPass);
                 req.session.authenticated = true;
-                req.username = username;
+                req.session.username = username;
                 res.redirect("/welcome");
             }
             break;
