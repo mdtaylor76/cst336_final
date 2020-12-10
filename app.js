@@ -128,7 +128,7 @@ function checkPassword(password, hashedValue) {
 app.get("/welcome", isAuthenticated, function(req, res) {
 //app.get("/myAccount", function(req, res) {
     console.log("/myAccount req.session.id: " + req.session.id);
-    let username = req.session.usernam;
+    let username = req.session.username;
     console.log("Username: " + username);
     //res.render("welcome", );
     res.render("welcome", {active: "home", "logged": true});
