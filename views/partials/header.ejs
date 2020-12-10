@@ -15,12 +15,11 @@
         		<a class="<%= active === 'cart' && 'active' %>" href="/cart"> Shopping Cart </a>
         	</li>
         	<li class="nav">
-        		<span><% username %><a class="button" href="/logout"> Logout </a></span>
+        		<% username %><a class="button" href="/logout"><u>Logout</u></a>
         	</li>
         	<li class="nav">
         	    <div id="logged"> Logged In </div>
         	</li>
-        </ul>
         </ul>
     <% } else { %>
         <h3 id="logged">Not Logged In</h3>
