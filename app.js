@@ -48,12 +48,9 @@ app.post("/", async function(req, res) {
             if (passwordMatch) {
                 req.session.authenticated = true;
                 req.session.username = username;
-//                req.session.save(function(err) {
-//
-//                    console.log("req.save: " + req.session.id);
-//                });
+
                 console.log("app.post req.session.id: " + req.session.id);
-                res.redirect("/welcome");//, {active: "home", "logged": true});
+                res.redirect("/welcome");
             }else {
                 console.log("account error");
                 res.render("index", {active: 'home', "loginError": true});
@@ -72,7 +69,7 @@ app.post("/", async function(req, res) {
                 let hashedPass = await hashPassword(password);
                 result = await addUsername(username, hashedPass);
                 req.session.authenticated = true;
-                res.render("/welcome", {active: "home", "logged": true});
+                res.redirect("/welcome");
             }
             break;
       }//switch
