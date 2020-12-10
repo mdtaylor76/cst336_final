@@ -44,33 +44,36 @@ app.post("/", async function(req, res) {
             }
             
             let passwordMatch = await checkPassword(password, hashedPwd);
-            //console.log("passwordMatch: " + passwordMatch);
-            
+
             if (passwordMatch) {
-            //    res.send("true");
                 req.session.authenticated = true;
                 req.session.username = username;
-                //req.session.save();
-                req.session.save(function(err) {
-                // session saved
-                    console.log("req.save: " + req.session.id);
-                });
+//                req.session.save(function(err) {
+//
+//                    console.log("req.save: " + req.session.id);
+//                });
                 console.log("app.post req.session.id: " + req.session.id);
-                //res.render("account", {active: "home"});
-                res.redirect("/myAccount");
+                res.redirect("/welcome");//, {active: "home", "logged": true});
             }else {
                 console.log("account error");
                 res.render("index", {active: 'home', "loginError": true});
             }
             break;
         case "create":
-            //console.log("Create User");
-            let hashedPass = await hashPassword(password);
-            //console.log("Hashedpass: " + hashedPass);
-            result = await addUsername(username, hashedPass);
-            //console.log("result: " + result);
-            req.session.authenticated = true;
-            res.render("welcome", {active: "home"});
+        
+            //check for existing user
+            let userExists = await checkUsername(username);
+            
+            if (userExists.length > 0) {
+                console.log("UserExists(" + username + "): " + userExists.length);
+                res.render("index", {active: 'home', "loginError": true});
+            }
+            else {
+                let hashedPass = await hashPassword(password);
+                result = await addUsername(username, hashedPass);
+                req.session.authenticated = true;
+                res.render("/welcome", {active: "home", "logged": true});
+            }
             break;
       }//switch
 
@@ -122,10 +125,12 @@ function checkPassword(password, hashedValue) {
     });
 }
 
-app.get("/myAccount", isAuthenticated, function(req, res) {
+app.get("/welcome", isAuthenticated, function(req, res) {
 //app.get("/myAccount", function(req, res) {
     console.log("/myAccount req.session.id: " + req.session.id);
-    res.render("account");
+    let username = req.session.usernam;
+    console.log("Username: " + username);
+    res.render("welcome");
 });
 
 app.get("/logout", function(req, res) {
@@ -137,7 +142,7 @@ app.get("/logout", function(req, res) {
 function isAuthenticated(req, res, next) {
     console.log("isAuthenticated req.session.id: " + req.session.id);
     if (!req.session.authenticated) {
-        console.log("!req.session.authenticated")
+        console.log("!req.session.authenticated");
         res.redirect('/');
     }
     else {
@@ -151,7 +156,7 @@ function createDBConnection() {
     var conn = mysql.createPool({
         connectionLimit: 10,
         
-    })
+    });
 }
 
 app.get("/store", function(req, res) {

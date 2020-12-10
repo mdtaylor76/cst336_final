@@ -4,17 +4,12 @@
         <title> Final Project </title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <link href="css/styles.css" rel="stylesheet">
+        <script src="js/functions.js"></script>
     </head>
-    
+    <% if (typeof logged != "undefined" && logged) { %>
         <ul>
         	<li class="nav">
-        		<a class="<%= active === 'home' && 'active' %>" href="/"> Signup </a>
-        	</li>
-        	<li class="nav">
         		<a class="<%= active === 'store' && 'active' %>" href="/store"> Store Search </a>
-        	</li>
-        	<li class="nav">
-        		<a class="<%= active === 'item' && 'active' %>" href="/item"> Item Search </a>
         	</li>
         	<li class="nav">
         		<a class="<%= active === 'cart' && 'active' %>" href="/cart"> Shopping Cart </a>
@@ -22,6 +17,12 @@
         	<li class="nav">
         		<a class="button" href="/logout"> Logout </a>
         	</li>
+        	<li class="nav">
+        	    <div id="logged"> Logged In </div>
+        	</li>
         </ul>
         </ul>
+    <% } else { %>
+        <h3 id="logged">Not Logged In</h3>
+    <% } %>
     <body>
