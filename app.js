@@ -130,7 +130,8 @@ app.get("/welcome", isAuthenticated, function(req, res) {
     console.log("/myAccount req.session.id: " + req.session.id);
     let username = req.session.usernam;
     console.log("Username: " + username);
-    res.render("welcome");
+    //res.render("welcome", );
+    res.render("welcome", {active: "home", "logged": true});
 });
 
 app.get("/logout", function(req, res) {
