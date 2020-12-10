@@ -15,10 +15,7 @@
         		<a class="<%= active === 'cart' && 'active' %>" href="/cart"> Shopping Cart </a>
         	</li>
         	<li class="nav">
-        		<%= username %><a class="button" href="/logout"><u>Logout</u></a>
-        	</li>
-        	<li class="nav">
-        	    <div id="logged"> Logged In </div>
+        		[ <%= username %>: <a class="button" href="/logout"><u>Logout</u></a> ]
         	</li>
         </ul>
     <% } else { %>
